@@ -3,7 +3,7 @@
 
 1：从一个数组从获取随机的一个值
 
-# var random=Math.floor(Math.random()*data.length);  #
+## var random=Math.floor(Math.random()*data.length);  ##
 
 
 2：通过keycode的值，来判断按下的键盘按键值
