@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>抽奖效果</title>
+</head>
+<style type="text/css">
+    *
+    {
+    	margin: 0;
+    	padding: 0;
+    }
+	#title
+	{
+		margin:200px auto;
+		margin-bottom: 0;
+		width: 200px;
+		height: 30px;
+		color: red;
+	}
+	#box
+	{
+		width: 200px;
+		height: 50px;
+		margin:0 auto;
+	}
+	button
+	{
+		width: 60px;
+		height: 30px;
+		border-radius: 6px;
+		background: blue;
+		color: white;
+	}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var data=['Phone','Ipad',"三星笔记本",'佳能相机',"惠普打印机",'谢谢惠顾',"50元充值卡","100元超市卡"];
+		    timer=null;
+		    flag=0;
+		    btn_star=document.getElementById('start');
+		    btn_end=document.getElementById('end');
+		    title=document.getElementById('title');
+            
+
+            //给两个按钮分别绑定相对应的函数
+		    btn_star.onclick=play;
+		    btn_end.onclick=stop;
+
+             
+             //开始抽奖的函数
+		     function play()
+	         {
+	         	btn_star.disabled="false";
+	         	clearInterval(timer);
+	 	        timer=setInterval(function(){
+	 		    var random=Math.floor(Math.random()*data.length);
+	 		    title.innerHTML=data[random];
+	 	      },50);
+	          }
+               
+
+               //停止抽奖的函数
+	          function stop()
+	          {
+	          	 btn_star.disabled="true";
+                 clearInterval(timer);
+	          }
+
+
+	          //键盘事件
+	          document.onkeyup=function(event)
+	          {
+                  var event=event || window.event;
+                  var key=event.KeyCode||event.which||event.charCode;//注意此处的兼容性处理
+                  if(key==13)
+                  {
+                      if(flag==0)
+                      {
+                      	play();
+                      	flag=1
+                      }else
+                      {
+                      	stop();
+                      	flag=0;
+                      }
+                  }
+	          }
+	}
+
+	
+</script>
+<body>
+     <div id="title">开始抽奖啦!</div>
+     <div id="box">
+     <button id="start">开始</button> <button id="end">结束</button>
+     </div>
+</body>
+</html>
